@@ -56,7 +56,7 @@ with open('data_4/driving_log.csv') as csvfile:
         samples.append(['./data_4/IMG/' + row[2].split('/')[-1], float(row[3]) - STEER_COR, True])
 
 
-tr_samples, va_samples = train_test_split(shuffle(samples[:100]), test_size=0.2)
+tr_samples, va_samples = train_test_split(shuffle(samples), test_size=0.2)
 
 # Get dataset sizes
 N_tr = len(tr_samples)#three images per row + flipping)
