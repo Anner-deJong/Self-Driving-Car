@@ -23,7 +23,6 @@
 ---
 
 ### Data Acquisition & Description
-[//]: # ([(page top)](#CarND-Project-3-Writeup)
 
 Data is acquired via the straightforward method included in Udacity's simulator.
 Data augmentation is applied through flipping each image and multiplying the corresponding steering angle by -1.
