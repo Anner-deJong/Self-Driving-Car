@@ -90,7 +90,7 @@ Following the preprocessing is the actual trainable model, consisting of 7 layer
 
 Each of the 7 layers includes Batch Norm and uses with Xavier initializations, and all but the last layer use ReLU activations. The first three conv layers include a MaxPool of size 2x2 (the last conv layer ends up with HxW = 1x16 so no further Pooling is applied). Dropout is applied to the 2nd until 6th layer in an increasingly aggressive regularization manner (increasing dropout rates (0.8, 0.7, 0.6, 0.5, 0.5)).
 
-----UPDATE----
+##### ----UPDATE----
 Whereas Tensorflow's Dropout function is passed a parameter representing the probability to keep a neuron, Keras works the other way around, passing not probabilities of keeping a neuron, but inversaly of dropping them! I didn't realize this until later.
 
 #### More NVIDIA alike model
@@ -176,7 +176,7 @@ I was able to change the dropout rates, but I am not completely familiar with th
 
 Testing after this third training cycle broke the AI, it was not able to complete a lap on track 1 anymore. As such, I focussed more attention to developing the NVIDIA alike model.
 
-----UPDATE----
+##### ----UPDATE----
 This third training step most likely didnt work because it is the first cycle which made extensive use of dropout, which I at first implemented incorrectly.
 
 #### NVIDIA Alike Model
@@ -207,7 +207,7 @@ The less great conclusion is that the car drives two times over the right side l
 
 It is great to have the car driving a full lap, but I wish I had more time to try and achieve this result for the other track as well. I hope to add the results of the NVIDIA alike model later still.
 
-----UPDATE----
+##### ----UPDATE----
 After training the NVIDIA model I was obviously very eager to try it out: It came with both good news and bad news.
 
 The good news is that the model is almost able to drive the second track as well, and the first track almost with much higher speeds.
