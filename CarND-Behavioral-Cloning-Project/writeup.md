@@ -103,24 +103,22 @@ Since the amount of weights blew up in the above mentioned model, I build anothe
     model.add(Convolution2D(24, 5, 5, init='glorot_uniform', border_mode='same', subsample=(2,2)))
     # Conv2
     model.add(Convolution2D(36, 5, 5, init='glorot_uniform', subsample=(2,2)))
-    model.add(Dropout(p=0.9))
     # Conv3
     model.add(Convolution2D(48, 5, 5, init='glorot_uniform', subsample=(2, 2), border_mode='same'))
-    model.add(Dropout(p=0.9))
     # Conv4
     model.add(Convolution2D(64, 3, 3, init='glorot_uniform'))
-    model.add(Dropout(p=0.8))
+    model.add(Dropout(p=0.1))
     # Conv5
     model.add(Convolution2D(64, 3, 3, init='glorot_uniform'))
-    model.add(Dropout(p=0.8))
+    model.add(Dropout(p=0.1))
     # Flatten
     model.add(Flatten())
     # FC6
     model.add(Dense(100, init='glorot_uniform'))
-    model.add(Dropout(p=0.7))
+    model.add(Dropout(p=0.3))
     # FC8
     model.add(Dense(50, init='glorot_uniform'))
-    model.add(Dropout(p=0.7))
+    model.add(Dropout(p=0.4))
     # FC9
     model.add(Dense(10, init='glorot_uniform'))
     # FC10
@@ -176,10 +174,14 @@ I was able to change the dropout rates, but I am not completely familiar with th
 
 Testing after this third training cycle broke the AI, it was not able to complete a lap on track 1 anymore. As such, I focussed more attention to developing the NVIDIA alike model.
 
+----UPDATE----
+This third training step most likely didnt work because I misinterpreted the dropout rates:
+Whereas Tensorflow's Dropout function is passed a parameter representing the probability to keep a neuron, Keras works the other way around, passing not probabilities of keeping a neuron, but inversaly of dropping them! I didn'e realize this until later.
+
 #### NVIDIA Alike Model
 
     # Hyperparameters
-    EPOCHS     = 35
+    EPOCHS     = 40
     BATCH_SIZE = 256
     LRN_RATE   = 0.002
     LR_DECAY   = 0.07
@@ -189,6 +191,9 @@ In a sort of all-in maneuver I acquired more data on track 2 as well, and tried 
 
 Stressed for time and resources, I did not test this model yet (it is still training while I am writing this).
 I hope to update this repository after the training on this model is finished.
+
+----UPDATE----
+I made the same mistake as with the third training cycle in terms of dropout rate parameters. After realizing, I trained the model for 40 epochs. See results in the section below.
 
 ### Autonomous Mode Simulator Performance
 
@@ -201,6 +206,15 @@ The less great conclusion is that the car drives two times over the right side l
 
 It is great to have the car driving a full lap, but I wish I had more time to try and achieve this result for the other track as well. I hope to add the results of the NVIDIA alike model later still.
 
+----UPDATE----
+After training the NVIDIA model I was obviously very eager to try it out: It came with both good news and bad news.
+
+The good news is that the model is almost able to drive the second track as well, and the first track almost with much higher speeds.
+
+The bad news is that in both the first and the second track, there is an edge case that breaks the AI. In the first track this is the bridge. Somehow, on the entire bridge, the output of the model is a constant negative, bumping and stopping the car on the left bridge edge (with both slow and higher speed).
+For the second case, some of the hairpin corners break the AI, where it steers strongly in the right direction, but just not enough.
+
+Both of these cases are likely solvable by retraining a little bit with a small data set consisting only of these edge cases. I have however not found the time to test this.
 
 
 
