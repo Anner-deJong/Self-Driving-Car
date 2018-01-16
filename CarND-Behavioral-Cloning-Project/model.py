@@ -71,7 +71,7 @@ def batch_generator(samples, batch_size=128):
 # Hyperparameters
 EPOCHS     = 10
 BATCH_SIZE = 256
-DROPOUT    = 0.7  # KEEP PROBABILITY
+DROPOUT    = 0.5  # MISINTERPRETED AS KEEP PROB (TF) BUT ACUALLY DROP PROB!
 LRN_RATE   = 0.001
 N_CLASSES  = 10
 BN_DECAY   = 0.999
@@ -99,24 +99,23 @@ model.add(Convolution2D(64, 3, 3, init='glorot_uniform'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Dropout(p=0.8))
 # Conv3
 model.add(Convolution2D(128, 3, 3, init='glorot_uniform'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
 model.add(MaxPooling2D((2, 2)))
-model.add(Dropout(p=0.7))
+model.add(Dropout(p=0.1))
 # Conv4
 model.add(Convolution2D(256, 3, 3, init='glorot_uniform'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(p=0.6))
+model.add(Dropout(p=0.1))
 # FC5
 model.add(Flatten())
 model.add(Dense(256, init='glorot_uniform'))
 model.add(BatchNormalization())
 model.add(Activation('relu'))
-model.add(Dropout(p=0.5))
+model.add(Dropout(p=0.4))
 # FC6
 model.add(Dense(128, init='glorot_uniform'))
 model.add(BatchNormalization())
