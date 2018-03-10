@@ -224,7 +224,7 @@ Even with these logical intuitions, it is still a sort of trial and error to cho
 
 An annotated video is created by looping over each frame of the video, while keeping track through time over the detections by means of the detection_history() class object. After applying the pipe_line to each frame, they are put back together to form the resulting video:
 
-<video src="videos/project_video_annotated.mp4" width="640" height="360" controls preload></video>
+[Video can be found here.](https://drive.google.com/open?id=1_czpQYQxwkScnPqkoOtQgtBYlUTEc3fT)
 
 #### Discussion
 
