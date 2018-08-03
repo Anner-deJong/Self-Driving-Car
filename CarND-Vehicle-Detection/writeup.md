@@ -8,7 +8,7 @@
 #### [2. Sliding Window based Detection](#Sliding-Window-based-Detection),
 #### [3. Heatmap Thresholding](#Heatmap-Thresholding),
 #### [4. Custom Heatmap Class](#Custom-Heatmap-Class), and
-#### [6. Full Pipeline Result](#Full-Pipeline-Result)
+#### [5. Full Pipeline Result](#Full-Pipeline-Result)
 
 This repository contains a stand-alone approach for detecting cars in videos captured while driving on highways.
 
